@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot name="AUTODESK" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find AUTODESK_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find AUTODESK_description)/urdf/AUTODESK.trans" />
+<xacro:include filename="$(find AUTODESK_description)/urdf/AUTODESK.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.030211299005952052 -4.8213785126134076e-05 0.021086757195702317" rpy="0 0 0"/>
+    <mass value="0.9367998255029805"/>
+    <inertia ixx="0.000727" iyy="0.003437" izz="0.004132" ixy="3e-06" iyz="0.0" ixz="-4.8e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://AUTODESK_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://AUTODESK_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="LEFT_WHEEL_1">
+  <inertial>
+    <origin xyz="-3.4048127428576436e-07 -0.0024999999999985867 2.6465302691708326e-07" rpy="0 0 0"/>
+    <mass value="0.019266798695843648"/>
+    <inertia ixx="1e-06" iyy="2e-06" izz="1e-06" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.127185 0.055 -0.012869" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://AUTODESK_description/meshes/LEFT_WHEEL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.127185 0.055 -0.012869" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://AUTODESK_description/meshes/LEFT_WHEEL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="RIGHT_WHEEL2_1">
+  <inertial>
+    <origin xyz="-1.9003350579249734e-07 0.0025000000000011194 -3.596800815051232e-07" rpy="0 0 0"/>
+    <mass value="0.019266798695843648"/>
+    <inertia ixx="1e-06" iyy="2e-06" izz="1e-06" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.127568 -0.055 -0.012919" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://AUTODESK_description/meshes/RIGHT_WHEEL2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.127568 -0.055 -0.012919" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://AUTODESK_description/meshes/RIGHT_WHEEL2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rev1" type="continuous">
+  <origin xyz="-0.127185 -0.055 0.012869" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="LEFT_WHEEL_1"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="Rev2" type="continuous">
+  <origin xyz="-0.127568 0.055 0.012919" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="RIGHT_WHEEL2_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+</robot>
